@@ -9,13 +9,23 @@ class Counter extends React.Component {
     incHandler = () => {
         if (this.state.number >= this.props.max) return
         this.setState({ number: this.state.number + 1 })
+        localStorage.setItem('actual number:', `${this.state.number + 1}`)
+        
     }
 
     decHandler = () => {
         if (this.state.number <= this.props.min) return
-
         this.setState({ number: this.state.number - 1 })
+        localStorage.setItem('actual number:', `${this.state.number - 1}`)
+        
     }
+
+    resetHandler = () => {
+       return ( 
+           this.setState({ number: this.props.startValue}),
+           localStorage.setItem('actual number:', `${this.props.startValue}`)
+       )
+        }
 
     render() {
         return (
@@ -26,6 +36,9 @@ class Counter extends React.Component {
                 </button>
                 <button
                     onClick={this.decHandler}>-
+                </button>
+                <button
+                    onClick={this.resetHandler}>RESET
                 </button>
                 <div>
                     {
@@ -45,8 +58,8 @@ class Counter extends React.Component {
 
 Counter.defaultProps = {
     startValue: 0,
-    min: -5,
-    max: 5
+    min: -100,
+    max: 100
 }
 
 export default Counter

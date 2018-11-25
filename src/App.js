@@ -3,9 +3,7 @@ import Counter from './Counter'
 const App = (props) => (
     <div>
         <Counter
-            startValue={5}
-            // min={-10}
-            // max={10}
+            startValue={0}
         />
        
     </div>
