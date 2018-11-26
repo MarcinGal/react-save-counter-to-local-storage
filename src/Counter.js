@@ -6,6 +6,8 @@ class Counter extends React.Component {
         number: this.props.startValue
     }
 
+    initialLocalStorage = () => localStorage.setItem('actual number:', `${this.props.startValue}`)
+
     incHandler = () => {
         if (this.state.number >= this.props.max) return
         this.setState({ number: this.state.number + 1 })
@@ -59,7 +61,7 @@ class Counter extends React.Component {
 Counter.defaultProps = {
     startValue: 0,
     min: -100,
-    max: 100
+    max: 100,
 }
 
 export default Counter
