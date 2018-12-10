@@ -10,22 +10,35 @@ class Counter extends React.Component {
         if (this.state.number >= this.props.max) return
         this.setState({ number: this.state.number + 1 })
         localStorage.setItem('actual number:', `${this.state.number + 1}`)
-        
+
+    }
+
+    incFiveHandler = () => {
+        if (this.state.number >= this.props.max) return
+        this.setState({ number: this.state.number + 5 })
+        localStorage.setItem('actual number:', `${this.state.number + 5}`)
     }
 
     decHandler = () => {
         if (this.state.number <= this.props.min) return
         this.setState({ number: this.state.number - 1 })
         localStorage.setItem('actual number:', `${this.state.number - 1}`)
-        
+
+    }
+
+    decFiveHandler = () => {
+        if (this.state.number <= this.props.min) return
+        this.setState({ number: this.state.number - 5 })
+        localStorage.setItem('actual number:', `${this.state.number - 5}`)
+
     }
 
     resetHandler = () => {
-       return ( 
-           this.setState({ number: this.props.startValue}),
-           localStorage.setItem('actual number:', `${this.props.startValue}`)
-       )
-        }
+        return (
+            this.setState({ number: this.props.startValue }),
+            localStorage.setItem('actual number:', `${this.props.startValue}`)
+        )
+    }
 
     render() {
 
@@ -33,23 +46,28 @@ class Counter extends React.Component {
             <div>
                 <h2>{this.state.number}</h2>
                 <button
-                    onClick={this.incHandler}>+
+                    onClick={this.incHandler}>+ 1
                 </button>
                 <button
-                    onClick={this.decHandler}>-
+                    onClick={this.decHandler}>- 1
                 </button>
                 <button
                     onClick={this.resetHandler}>RESET
                 </button>
+                <button
+                    onClick={this.incFiveHandler}> + 5</button>
+                <button
+                    onClick={this.decFiveHandler}
+                > - 5</button>
                 <div>
                     {
                         this.state.number === this.props.min ?
-                        'Lower range exceeded!'
-                        :
-                        this.state.number === this.props.max ?
-                        'Upper range exceeded!'
-                        :
-                        null
+                            'Lower range exceeded!'
+                            :
+                            this.state.number === this.props.max ?
+                                'Upper range exceeded!'
+                                :
+                                null
                     }
                 </div>
             </div>
