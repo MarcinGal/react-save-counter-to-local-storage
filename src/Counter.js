@@ -3,14 +3,13 @@ import React from 'react'
 
 class Counter extends React.Component {
     state = {
-        number: this.props.startValue
+        number: parseInt(localStorage.getItem('actual number:')) || this.props.startValue
     }
 
     incHandler = () => {
         if (this.state.number >= this.props.max) return
         this.setState({ number: this.state.number + 1 })
-        localStorage.setItem('actual number:', `${this.state.number + 1}`)
-
+        localStorage.setItem('actual number:', `${this.state.number + 1}` )
     }
 
     incFiveHandler = () => {
@@ -57,14 +56,13 @@ class Counter extends React.Component {
                 <button
                     onClick={this.incFiveHandler}> + 5</button>
                 <button
-                    onClick={this.decFiveHandler}
-                > - 5</button>
+                    onClick={this.decFiveHandler}> - 5</button>
                 <div>
                     {
-                        this.state.number === this.props.min ?
+                        localStorage.getItem('actual number:') <= this.props.min ?
                             'Lower range exceeded!'
                             :
-                            this.state.number === this.props.max ?
+                            localStorage.getItem('actual number:') >= this.props.max ?
                                 'Upper range exceeded!'
                                 :
                                 null
